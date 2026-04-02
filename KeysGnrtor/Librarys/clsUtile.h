@@ -91,10 +91,10 @@ public:
         string Key = "";
 
 
-        Key = GenerateWord(CharType, 4) + "-";
-        Key = Key + GenerateWord(CharType, 4) + "-";
-        Key = Key + GenerateWord(CharType, 4) + "-";
-        Key = Key + GenerateWord(CharType, 4);
+        Key = GenerateWord(CharType, 5) + "-";
+        Key = Key + GenerateWord(CharType, 5) + "-";
+        Key = Key + GenerateWord(CharType, 5) + "-";
+        Key = Key + GenerateWord(CharType, 5);
 
 
         return Key;
