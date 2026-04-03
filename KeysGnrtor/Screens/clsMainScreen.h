@@ -5,6 +5,7 @@ using namespace std;
 #include"C:/Programing_For_Projects/KeysGnrtor/LogicalLeyer/clsKeygeneration.h"
 #include"C:/Programing_For_Projects/KeysGnrtor/Librarys/clsInputValidate.h"
 #include"C:/Programing_For_Projects/KeysGnrtor/Screens/clsShowAllKeys.h"
+#include"C:/Programing_For_Projects/KeysGnrtor/Screens/clsAddNew.h"
 class  clsMainScreen
 {
     enum En_oprethons{En_ShowMain =1, En_AddNewPerson =2  , En_DeletePerson  = 3 , En_FindPerson =4 , En_UPdatePerson =5};
@@ -34,6 +35,7 @@ class  clsMainScreen
 
     static void _ShowAddNewScreen()
     {
+        clsAddNew::AddNewKey();
         //cout << "\nAdd New Client Screen Will be here...\n";
     
     }

@@ -40,7 +40,7 @@ _Person._LastName = L2d;
 }
 string GetLastName()
 {
-_Person._LastName;
+return _Person._LastName;
 }
 void SetEmail(string Em )
 {
@@ -51,7 +51,7 @@ _Person._Email = Em;
 string GetEmail()
 {
 
-_Person._Email;
+return _Person._Email;
 }
 
 void SetPhone (string Ph )
@@ -61,8 +61,9 @@ _Person._Phone = Ph;
 
 string GetPhone ()
 {
-_Person._Phone;
+return _Person._Phone;
 }
+
 string FullNaem()
 {
 

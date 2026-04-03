@@ -23,38 +23,36 @@ enum E_Mode{E_empty = 0 , E_update =1 , E_add =2 };
 E_Mode _Mode;
 // __________________//
 string _Key ="";
-string _DateTime = "";
+string _DateTime ="";
 string  Password_Login ="";/// this is paas krey OOPo
 bool Mark =false;
-        /// first  , last Email  , phone  , country  , city  ,  street 
-    static  clsKeygeneration _convertLinetoObject (string Line  , string Delimter  = "(##)") /// this is mood load date  from file and split this data and push to members
+    static  clsKeygeneration _convertLinetoObject (string Line  , string Delimter  = "/##/") /// this is mood load date  from file and split this data and push to members
     {
         vector<string>VLine = clsString::Split(Line , Delimter);// consractor
               
-          return (clsKeygeneration( E_Mode::E_update, VLine[0] , VLine[1],VLine[2] ,VLine[3] , VLine[4] , VLine[5] ,VLine[6] ,VLine[7]   ));
+          
+          return  clsKeygeneration( E_Mode::E_update, VLine[0] , VLine[1],VLine[2] ,VLine[3] , VLine[4] , VLine[5] ,VLine[6]   ,VLine[7] , VLine[8] , VLine[9] );
     }
      static  clsKeygeneration GetEmptyToObject (    ) /// this is mood load date  from file and split this data and push to members
     {
               
-          return clsKeygeneration( E_Mode::E_empty, "","","", "" ,"","","","");
+          return clsKeygeneration( E_Mode::E_empty, "","","", "" ,"","","","" ,"" ,"");
     }
-    static string _ConvertLineToFile( clsKeygeneration Key,string Delimter  = "(##)" )// this is convert data to push to file 
-    {
-       
-    //      Key._Key= clsUtile::GenerateKey(clsUtile::enCharType::SpecialCharacter);
-    //   Key._DateTime = clsDate::DateAndTime();
-      string Line = Key.GetFirstName()+Delimter+
-         Key.GetLastName()+ Delimter
-         +Key.GetEmail()+Delimter
-         +Key.GetPhone()+Delimter
-         +Key.GetCoutry()+Delimter
-         +Key.GetCity()+Delimter
-         +Key.GetStreet()+Delimter
-        +Key.GetKey()+Delimter
-        +Key.GetDateTime()+Delimter
-        +Key.Password_Login;
-       return Line;
-    }
+  static string _ConvertLineToFile(clsKeygeneration Key, string Delimter = "/##/")
+{
+    string Line = "";
+    Line += Key.GetFirstName() + Delimter;
+    Line += Key.GetLastName() + Delimter;
+    Line += Key.GetEmail() + Delimter;
+    Line += Key.GetPhone() + Delimter;
+    Line += Key.GetCoutry() + Delimter;
+    Line += Key.GetCity() + Delimter;
+    Line += Key.GetStreet() + Delimter;
+    Line += Key.GetKey() + Delimter; 
+    Line += Key.Password_Login;
+    
+    return Line;
+}
 
     static vector<clsKeygeneration> _LoadDataFromFile()//this Big O(n)
     {
@@ -125,15 +123,19 @@ bool Mark =false;
     
     void _Add()
     {
-      _Key= clsUtile::GenerateKey(clsUtile::enCharType::SpecialCharacter);
+  
+      _Key = clsUtile::GenerateKey(clsUtile::enCharType::CapitalLetter);
       _DateTime = clsDate::DateAndTime();
     _AddDateToFile(*this);
     }
     
     
     public:
-clsKeygeneration(E_Mode Mode, string First, string Last, string Email, string phone, string Country, string City, string Street, string Password) : clsPerson(First, Last, Email, phone, Country, City, Street)
+clsKeygeneration(E_Mode Mode, string First, string Last, string Email, string phone,string Country, string City, string Street, string Key,string DateTime, string Password) 
+                 : clsPerson(First, Last, Email, phone, Country, City, Street)
 {
+    _Key = Key; 
+    _DateTime = DateTime;
     Password_Login = Password;
     _Mode = Mode;
 }
@@ -147,11 +149,11 @@ clsKeygeneration(E_Mode Mode, string First, string Last, string Email, string ph
         return Password_Login;
     }
   
+   
     string GetDateTime()
     {
         return _DateTime;
     }
-  
     string GetKey()
     {
         return _Key;
@@ -195,7 +197,12 @@ clsKeygeneration(E_Mode Mode, string First, string Last, string Email, string ph
             
             case E_Mode::E_empty:
             {
-                if(IsEmpty()) return SaveMods::svFaildEmptyObject;
+                if(IsEmpty()) 
+                {
+                return SaveMods::svFaildEmptyObject;
+                }
+               
+                
             }
             case E_Mode::E_update: 
             {
@@ -233,7 +240,7 @@ clsKeygeneration(E_Mode Mode, string First, string Last, string Email, string ph
     
      static clsKeygeneration GetAdd(string Pass )
      {
-         return clsKeygeneration( E_Mode::E_add, "","","", "" ,"","","",Pass);
+         return clsKeygeneration( E_Mode::E_add, "","","", "" ,"","","" ,"","",Pass);
      }
     static vector<clsKeygeneration> GetAllKeys()
     {
