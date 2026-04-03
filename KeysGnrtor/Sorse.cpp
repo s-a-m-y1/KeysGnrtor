@@ -1,10 +1,11 @@
 #include<iostream>
-#include"C:/Programing_For_Projects/KeysGnrtor/LogicalLeyer/clsKey.h"
 using namespace std;
+#include"C:/Programing_For_Projects/KeysGnrtor/Screens/clsMainScreen.h"
 int main()
 {
-    clsKey clsKe;
-    cout<<clsKe.GetKey()<<endl;
+    clsMainScreen::ShowMainMenue();
+
+        
 system("pause>0");
     return 0;
-} 
+}

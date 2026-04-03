@@ -11,6 +11,8 @@
     string _Email ="";
     string _Phone ="";
     };
+
+     /// first  , last Email  , phone  , country  , city  ,  street 
      St_Preson _Person;
 public:
   clsPerson( string First , string  Last , string  Email , string phone  ,string  Country , string City , string Street  ):stAddress(Country , City , Street)
