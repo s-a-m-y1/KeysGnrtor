@@ -30,8 +30,12 @@ bool Mark =false;
     {
         vector<string>VLine = clsString::Split(Line , Delimter);// consractor
               
+          if (VLine.size()<10)
+          {
+          return GetEmptyToObject();
+          }
+     return  clsKeygeneration( E_Mode::E_update, VLine[0] , VLine[1],VLine[2] ,VLine[3] , VLine[4] , VLine[5] ,VLine[6]   ,VLine[7] , VLine[8] , VLine[9] );
           
-          return  clsKeygeneration( E_Mode::E_update, VLine[0] , VLine[1],VLine[2] ,VLine[3] , VLine[4] , VLine[5] ,VLine[6]   ,VLine[7] , VLine[8] , VLine[9] );
     }
      static  clsKeygeneration GetEmptyToObject (    ) /// this is mood load date  from file and split this data and push to members
     {
@@ -170,16 +174,17 @@ clsKeygeneration(E_Mode Mode, string First, string Last, string Email, string ph
         if(Find.is_open())
         {
             string LIne ="";
+            
             while (getline(Find , LIne))
             {
-            clsKeygeneration Key = _convertLinetoObject(LIne);
+          clsKeygeneration Key = _convertLinetoObject(LIne);
             if (Key.Password_Login==Password)
             {
             Find.close();
             return Key;
             }
+
             }
-            Find.close();
         }
        return GetEmptyToObject();
     }

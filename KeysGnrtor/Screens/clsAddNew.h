@@ -35,6 +35,7 @@ class clsAddNew
         cout<<"Country : "<<Key.GetCoutry()<<endl;
         cout<<"City : "<<Key.GetCity()<<endl;
         cout<<"Street : "<<Key.GetStreet()<<endl;
+        cout<<"DateTime : "<<Key.GetDateTime()<<endl;
         cout<<"Password : "<<Key.Getpassword()<<endl;
         cout<<"============================================\n";
     }
